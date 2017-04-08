@@ -439,6 +439,12 @@
     var valBeforeCursor = parsedValue.slice(0,cursorPosition);
     valBeforeCursor = removeThousandSeparators(valBeforeCursor, thousandSeparator);
     parsedValue = removeThousandSeparators(parsedValue, thousandSeparator);
+    if (integerPart && integerPart > 0) {
+      var parsedValueWithoutDots = parsedValue.replace(new RegExp('^[\.,'+thousandSeparator+']{2,}'), "")
+      if (parsedValueWithoutDots.length > integerPart) {
+        parsedValue = parsedValueWithoutDots.slice(0, parsedValueWithoutDots.length - 1);
+      }
+    }
     valBeforeCursor = removeLeadingZero(valBeforeCursor);
     var beforeRemovingLeadingZero = parsedValue;
     parsedValue = removeLeadingZero(parsedValue);
