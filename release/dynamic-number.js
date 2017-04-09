@@ -439,9 +439,9 @@
     var valBeforeCursor = parsedValue.slice(0,cursorPosition);
     valBeforeCursor = removeThousandSeparators(valBeforeCursor, thousandSeparator);
     parsedValue = removeThousandSeparators(parsedValue, thousandSeparator);
-    if (integerPart && integerPart > 0) {
+    if (parameters.attrs.numInt && parameters.attrs.numInt > 0) {
       var parsedValueWithoutDots = parsedValue.replace(new RegExp('^[\.,'+thousandSeparator+']{2,}'), "")
-      if (parsedValueWithoutDots.length > integerPart) {
+      if (parsedValueWithoutDots.length > parameters.attrs.numInt) {
         parsedValue = parsedValueWithoutDots.slice(0, parsedValueWithoutDots.length - 1);
       }
     }
@@ -670,6 +670,7 @@
          * it is like filter,
          */
         ngModelController.$formatters.push(function(value){
+          console.log(state)
           if (state.count == 0) return value;
           return filterModelValue(
             value,
