@@ -670,18 +670,18 @@
          * it is like filter,
          */
         ngModelController.$formatters.push(function(value){
-          return value;
-          // return filterModelValue(
-            // value,
-            // initObject.fractionPart,
-            // initObject.fractionSeparator,
-            // initObject.roundFunction,
-            // initObject.isFixed,
-            // initObject.isThousandSeparator,
-            // initObject.thousandSeparator,
-            // initObject.prepend,
-            // initObject.append
-          // );
+          if (state.count == 0) return value;
+          return filterModelValue(
+            value,
+            initObject.fractionPart,
+            initObject.fractionSeparator,
+            initObject.roundFunction,
+            initObject.isFixed,
+            initObject.isThousandSeparator,
+            initObject.thousandSeparator,
+            initObject.prepend,
+            initObject.append
+          );
         });
       }
     };
